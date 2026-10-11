@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Combobox implementation</title>
+</head>
+
+<body>
+    <main class="container">
+        <h1>4.0 Combobox listbox result | Incomplete</h1>
+
+        <article>
+
+            <label for="cntrl1">Label</label>
+            <div class="combobox combobox-list">
+                <div class="group">
+                    <!-- HINT: add role="combobox" on this input -->
+                    <!-- HINT: connect popup with aria-controls="results" -->
+                    <!-- HINT: reflect open/close with aria-expanded="true|false" -->
+                    <!-- HINT: declare popup type aria-haspopup="listbox" -->
+                    <!-- HINT: declare model aria-autocomplete="list" (or "both" if inline completion) -->
+                    <!-- HINT: when you highlight an option in JS, update aria-activedescendant="<option-id>" -->
+                    <input role="combobox" aria-controls="results" aria-autocomplete="list" aria-expanded="false"
+                        aria-haspopup="listbox" id="cntrl1" class="cb_edit" type="text">
+
+                    <!-- HINT: ensure an accessible name, e.g., aria-label, only if needed -->
+                    <!-- HINT: if you choose the button as the disclosure owner, keep its aria-expanded in sync (or prefer the input as source of truth) -->
+                    <button type="button" id="cb1-button" title="Show results">
+                        <svg width="18" height="16" style="forced-color-adjust: auto">
+                            <polygon class="arrow" stroke-width="0" fill-opacity="0.75" fill="currentcolor"
+                                points="3,6 15,6 9,14"></polygon>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- HINT: add role="listbox" here -->
+                <ul role="listbox" id="results" class="listbox" hidden>
+                    <!-- HINT: each li: role="option" + stable id -->
+                    <!-- HINT: mark chosen option with aria-selected="true" (others false/absent) -->
+                    <li role="option" id="01">Result1</li>
+                    <li role="option" id="02">Result2</li>
+                    <li role="option" id="03">Result3</li>
+                    <li role="option" id="04">Result4</li>
+                    <li role="option" id="05">Result5</li>
+                </ul>
+
+            </div>
+        </article>
+
+        <details>
+            <summary><strong>Testing prompts</strong></summary>
+
+            <h2>With a screen reader</h2>
+
+            <ul>
+                <li><strong>Focus the input</strong> does it announce “Combobox” + your label?</li>
+
+                <li><strong>Open the list</strong> does it announce expanded?</li>
+
+                <li><strong>Arrow down</strong> does it read the currently highlighted option (via
+                    aria-activedescendant)?</li>
+
+                <li><strong>Press Enter</strong> does it read selection, fill the input, and close?</li>
+
+                <li><strong>Type to filter</strong> do you hear updates?</li>
+
+                <li><strong>Press Esc</strong> does it close and keep focus in the input?</li>
+            </ul>
+
+            <h2>With only keyboard</h2>
+            <ul>
+                <li><strong>Tab</strong> into input, Arrow to move through options, Enter to choose, Esc to dismiss.
+                </li>
+
+                <li>Tab never lands on individual list items.</li>
+            </ul>
+
+            <h2>Common pitfalls</h2>
+            <ul>
+                <li>Adding tabindex to options while also using aria-activedescendant (pick one approach).</li>
+
+                <li>Forgetting to update aria-expanded when the list opens/closes.</li>
+
+                <li>Rebuilding options without preserving their ids (breaks aria-activedescendant).</li>
+
+                <li>Using aria-owns to move DOM ownership when simple aria-controls is enough (prefer aria-controls if
+                    the popup is a normal sibling/descendant).</li>
+            </ul>
+        </details>
+
+    </main>
+</body>
+
+</html>
